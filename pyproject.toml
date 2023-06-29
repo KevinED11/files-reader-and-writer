@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "files-reader-and-writer"
+version = "0.1.0"
+description = ""
+authors = ["KevinED11 <mendez_kael@hotmail.com>"]
+readme = "README.md"
+packages = [{ include = "files_reader_and_writer" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pypdf = "^3.11.1"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+pytest = "^7.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
