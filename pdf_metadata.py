@@ -2,9 +2,8 @@ from pypdf import DocumentInformation
 from typing import Optional
 from typing import Protocol
 from pypdf import PdfReader
+from _types import OptionalStr
 
-
-OptionalStr = Optional[str]
 
 
 class IFileMetadata(Protocol):

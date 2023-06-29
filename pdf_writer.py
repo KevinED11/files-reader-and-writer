@@ -2,8 +2,8 @@ from pdf_metadata import IFileMetadata
 from pdf_reader import IReader
 from pathlib import Path
 from typing import Protocol
+from _types import ListStr
 
-ListStr = list[str]
 
 
 class IWriter(Protocol):
