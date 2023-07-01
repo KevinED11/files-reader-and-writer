@@ -1,9 +1,9 @@
-from pdf_metadata import IFileMetadata
-from pdf_reader import IReader
+from file_metadata import IFileMetadata
+from file_reader import IReader
 from pathlib import Path
 from typing import Protocol
 from _types import ListStr
-
+from functools import cache, cached_property
 
 
 class IWriter(Protocol):
@@ -26,6 +26,13 @@ class TxtFileWriter:
             *(page.extract_text() for page in self.__reader.pages),
         ]
 
+    def __check_existing_file(self) -> bool:
+        return Path(self.__txt_file).resolve().exists()
+
+    def __check_existing_content(self) -> bool:
+        return Path(self.__txt_file).resolve().stat().st_size != 0
+
     def write(self) -> None:
-        with open(self.__txt_file, "w+") as file:
-            file.write("\n\n".join(self.__content_to_write()))
+        if not self.__check_existing_file() or not self.__check_existing_content():
+            with open(self.__txt_file, "w+") as file:
+                file.write("\n\n".join(self.__content_to_write()))

@@ -5,23 +5,22 @@ from pypdf import PdfReader
 from _types import OptionalStr
 
 
-
 class IFileMetadata(Protocol):
-      @property
-      def title(self) -> OptionalStr:
-          ...
+    @property
+    def title(self) -> OptionalStr:
+        ...
 
-      @property
-      def author(self) -> OptionalStr:
-          ...
+    @property
+    def author(self) -> OptionalStr:
+        ...
 
-      @property
-      def number_of_pages(self) -> int:
-          ...
+    @property
+    def number_of_pages(self) -> int:
+        ...
 
-      @property
-      def metadata(self) -> Optional[DocumentInformation]: 
-          ...
+    @property
+    def metadata(self) -> Optional[DocumentInformation]:
+        ...
 
 
 class PdfFileMetadata:
@@ -32,20 +31,20 @@ class PdfFileMetadata:
     def title(self) -> OptionalStr:
         if self.pdf_reader.metadata is None:
             return None
-        
+
         return self.pdf_reader.metadata.title
-    
+
     @property
     def author(self) -> OptionalStr:
         if self.pdf_reader.metadata is None:
             return None
-        
+
         return self.pdf_reader.metadata.author
 
     @property
     def number_of_pages(self) -> int:
         return len(self.pdf_reader.pages)
-    
+
     @property
     def metadata(self) -> Optional[DocumentInformation]:
         return self.pdf_reader.metadata
